@@ -204,7 +204,7 @@ const transporter = nodemailer.createTransport({
         from: ' "Reset Password" <process.env.USER_MAIL>',
         to: user.email,
         subject: "Sporty - Reset your password",
-        html: `<h2> ${user.username} </h2> 
+        html: `<h2> ${user.username} ${user.phoneNumber}  </h2> 
                 <h2> Thank you for using Sporty </h2> 
                <h4> Please click on the link to continue..... </h4>
                <a href="${process.env.CLIENT_URL}/api/v1/reset-password/${user._id}/${token}">Reset Your Password</a>`,

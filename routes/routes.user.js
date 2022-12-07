@@ -17,7 +17,7 @@ router.get("/verify-user", verifyUser);
 router.post("/forgotpassword", validateVerified, forgotPassword);
 router.get("/reset-password/:id/:token", resetPasswordpage);
 router.post("/reset-password/:id/:token", resetPassword);
-router.put("/update/:id", isAuth, validateVerified, updateUser);
+router.put("/update/:id", isAuth,  updateUser);
 router.get("/logout", isAuth, logOut);
 
 module.exports = router;
