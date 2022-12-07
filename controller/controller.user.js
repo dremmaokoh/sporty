@@ -55,11 +55,12 @@ let { PASSWORDS, EMAIL } = process.env;
       }
       const hashedPassword = await passwordHash(password);
   
-      const user = new Client({
+      const user = new Sport({
         username,
         email,
         phoneNumber,
         password: hashedPassword,
+        interestField,
         smstoken: OTP,
         isVerified: false,
       });
