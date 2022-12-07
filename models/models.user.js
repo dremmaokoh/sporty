@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["true", "false"],
       default: "false",
-    },
+     },
     date: {
       type: Date,
       default: Date.now(),

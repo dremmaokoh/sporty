@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 const { passwordHash, passwordCompare } = require("../helper/hashing");
 const axios = require ('axios')
 const Sport = require("../models/models.user");
@@ -9,6 +10,16 @@ const {
   findUserByNumber,
 } = require("../services/user.services");
 let { PASSWORDS, EMAIL } = process.env;
+const transporter = nodemailer.createTransport({
+    service: process.env.MAIL,
+    auth: {
+      user: process.env.USER_MAIL,
+      pass: process.env.PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
 
 
   exports.signUp = async (req, res, next) => {
@@ -91,6 +102,7 @@ let { PASSWORDS, EMAIL } = process.env;
   };
 
   exports.verifyUser = async (req, res, next) => {
+   
     try {
       const token = req.query.token;
       const user = await Sport.findOne({ smstoken: token });
@@ -187,7 +199,7 @@ let { PASSWORDS, EMAIL } = process.env;
           }
         });
       });
-  
+      
       const mailOptions = {
         from: ' "Reset Password" <process.env.USER_MAIL>',
         to: user.email,
