@@ -41,7 +41,7 @@ How to install
 ````````````````````
 
 ### Postman Documentation
-[click here](https://documenter.getpostman.com/view/22271662/2s8YYEQQkr)
+[click here](https://documenter.getpostman.com/view/22271662/2s8YzQVPGB)
 
 
 ### Vercel
