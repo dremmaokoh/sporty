@@ -298,7 +298,7 @@ const transporter = nodemailer.createTransport({
     try {
       const { username, email } =
         req.body;
-      const user_product = await Sport.findByIdAndUpdate(
+      const user_new = await Sport.findByIdAndUpdate(
         { _id: id },
         { ...req.body },
         {
@@ -307,7 +307,7 @@ const transporter = nodemailer.createTransport({
       );
       const user_update = {
         message: "Updated successfully",
-        user_update,
+        user_new,
       };
       return res.status(200).json(user_update);
     } catch (error) {
