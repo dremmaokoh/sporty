@@ -307,7 +307,7 @@ const transporter = nodemailer.createTransport({
       );
       const user_update = {
         message: "Updated successfully",
-        user_product,
+        user_update,
       };
       return res.status(200).json(user_update);
     } catch (error) {
