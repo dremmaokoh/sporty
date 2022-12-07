@@ -66,6 +66,12 @@ let { PASSWORDS, EMAIL } = process.env;
       });
       const new_user = await user.save();
 
+      
+      const user_info = {
+        message: "OTP code is sent to your phone number",
+        new_user,
+      };
+
        // Generate Otp, save and send to the user
       let userNumber = user.phoneNumber;
       const config = {
@@ -77,10 +83,7 @@ let { PASSWORDS, EMAIL } = process.env;
       // fetch the kudisms 
       const resp = await axios(config);
     
-      const user_info = {
-        message: "OTP code is sent to your phone number",
-        new_user,
-      };
+     
       return res.status(201).json(user_info);
     } catch (error) {
       next(error);
