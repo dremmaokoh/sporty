@@ -8,8 +8,7 @@ const {
   findUserByEmail,
   findUserByNumber,
 } = require("../services/user.services");
-const otpGenerator = require("otp-generator")
-let { PASSWORD, EMAIL } = process.env;
+let { PASSWORDS, EMAIL } = process.env;
 
 
   exports.signUp = async (req, res, next) => {
@@ -70,7 +69,7 @@ let { PASSWORD, EMAIL } = process.env;
       let userNumber = user.phoneNumber;
       const config = {
         method: "post",
-        url: `https://account.kudisms.net/api/?username=${EMAIL}&password=${PASSWORD}&message=${message}&sender=Bookie&mobiles=${userNumber}`,
+        url: `https://account.kudisms.net/api/?username=${EMAIL}&password=${PASSWORDS}&message=${message}&sender=Bookie&mobiles=${userNumber}`,
         headers: {},
       };
 
