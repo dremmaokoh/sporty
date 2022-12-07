@@ -28,6 +28,7 @@ Packages Installed
 >- jsonwebtoken : for verification
 >- otp-generator: to generate Otp code
 >- validator: to validate user information
+`````````````
 
 
 ``````````````
@@ -37,12 +38,14 @@ How to install
 >- Run : <kbd>npm i </kbd>
 >- Run: <kbd>npm run dev <kbd>
 
+````````````````````
+
 ### Postman Documentation
 [click here](https://documenter.getpostman.com/view/22271662/2s8YYEQQkr)
 
 
 ### Vercel
-[click here](https://gofarm-ng.vercel.app/)
+[click here](https://sporty-ten.vercel.app/)
 
 
 

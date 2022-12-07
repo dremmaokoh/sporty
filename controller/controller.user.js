@@ -1,17 +1,16 @@
 const jwt = require("jsonwebtoken");
 const { passwordHash, passwordCompare } = require("../helper/hashing");
+const axios = require ('axios')
 const Sport = require("../models/models.user");
+const { OTP, message } = require("../utils/message");
 const { jwtSign } = require("../helper/jwt");
 const {
   findUserByEmail,
   findUserByNumber,
 } = require("../services/user.services");
 const otpGenerator = require("otp-generator")
-let OTP = otpGenerator.generate(5, {
-    upperCaseAlphabets: false,
-    specialChars: false,
-  });
-  
+let { PASSWORD, EMAIL } = process.env;
+
 
   exports.signUp = async (req, res, next) => {
     try {
@@ -66,7 +65,17 @@ let OTP = otpGenerator.generate(5, {
         isVerified: false,
       });
       const new_user = await user.save();
-  
+
+       // Generate Otp, save and send to the user
+      let userNumber = user.phoneNumber;
+      const config = {
+        method: "post",
+        url: `https://account.kudisms.net/api/?username=${EMAIL}&password=${PASSWORD}&message=${message}&sender=Bookie&mobiles=${userNumber}`,
+        headers: {},
+      };
+
+      // fetch the kudisms 
+      const resp = await axios(config);
     
       const user_info = {
         message: "OTP code is sent to your phone number",
@@ -177,7 +186,7 @@ let OTP = otpGenerator.generate(5, {
       });
   
       const mailOptions = {
-        from: ' "Verify your email" <process.env.USER_MAIL>',
+        from: ' "Reset Password" <process.env.USER_MAIL>',
         to: user.email,
         subject: "Sporty - Reset your password",
         html: `<h2> ${user.firstname} ${user.lastname} </h2> 
